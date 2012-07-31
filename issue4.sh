@@ -1,17 +1,16 @@
-#!/bin/bash -x
+#!/bin/bash
 
 function maxpath {
 	path=$1
-	#pwd=`pwd`
+	cwd=`pwd`
 
-	#path=`echo ${path} | sed -r 's!(^[^/].*$)!${pwd}/\1/g'`
+	path=`echo ${path} | sed -r "s!(^[^/].*)!${cwd}/\1!g"`
 
 	if [ -e "${path}" ]; then
 		echo ${path}
 		exit
 	else 
 		subpath=`echo ${path} | sed -r 's!^(.*)\/[^/]*$!\1!g'`
-		echo ${subpath}
 		maxpath ${subpath}
 	fi	
 }
