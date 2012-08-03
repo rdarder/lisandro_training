@@ -5,6 +5,11 @@
 
 LOGFILE=$1
 
+if [ -z ${LOGFILE} ]; then
+  echo "Missing log file ${LOGFILE}"
+  exit
+fi
+
 # Split log by date
 perl aal2d.pl "$LOGFILE" |
   add_field -A Time -C Time -l TimeDay |
